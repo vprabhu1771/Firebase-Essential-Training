@@ -1,0 +1,20 @@
+https://www.youtube.com/watch?v=oNoRw69ro2k
+
+untitle -> Project Overview -> General
+
+Your Project -> Project ID -> copy Project ID
+
+
+
+https://cloud.google.com/apis -> Console -> APIs & Services -> Search for "Firebase Cloud Messaging API" -> Enable if not Enabled
+
+https://cloud.google.com/apis -> Console -> IAM & Admin -> Service Accounts
+
+
+POST -> https://fcm.googleapis.com/v1/projects/{project_id}/messages:send
+
+Headers
+
+Content-Type -> application/json
+
+Authorization -> 

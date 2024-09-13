@@ -1,0 +1,77 @@
+Built flutterfire_cli:flutterfire.
+Installed executable flutterfire.
+Warning: Pub installs executables into $HOME/.pub-cache/bin, which is not on your path.
+You can fix that by adding this to your shell's config file (.zshrc, .bashrc, .bash_profile, etc.):
+
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+
+To set up the Firebase CLI on macOS and activate the `flutterfire_cli` for your Flutter projects, follow these steps:
+
+### Step 1: Install Firebase CLI
+1. **Install Firebase CLI via npm**:
+   - First, install `node` and `npm` if they are not already installed on your Mac.
+     - You can install them via Homebrew:
+
+       ```bash
+       brew install node
+       ```
+
+   - After that, install the Firebase CLI globally:
+
+     ```bash
+     npm install -g firebase-tools
+     ```
+
+2. **Login to Firebase**:
+   - Once installed, log in to your Firebase account:
+
+     ```bash
+     firebase login
+     ```
+
+### Step 2: Install `flutterfire_cli`
+1. **Activate `flutterfire_cli`**:
+   - Use the `dart` command to activate the `flutterfire_cli` globally:
+
+     ```bash
+     dart pub global activate flutterfire_cli
+     ```
+
+2. **Set PATH for Dart CLI**:
+   - To make the `flutterfire` command available globally, you'll need to add the path to the Dart CLI tools. First, find the directory where Dart global packages are installed. Usually, it's in `$HOME/.pub-cache/bin`.
+
+   - Open your terminal and edit your `.zshrc` (for zsh) or `.bash_profile` (for bash) file to include the path:
+
+     ```bash
+     nano ~/.zshrc
+     ```
+
+     Add the following line to the file:
+
+     ```bash
+     export PATH="$PATH":"$HOME/.pub-cache/bin"
+     ```
+
+   - Save the file (`Ctrl + X`, then `Y`, then `Enter`), and reload the terminal configuration:
+
+     ```bash
+     source ~/.zshrc
+     ```
+
+3. **Verify Installation**:
+   - Verify that `flutterfire` is correctly installed by running:
+
+     ```bash
+     flutterfire --version
+     ```
+
+### Step 3: Use `flutterfire_cli` to Configure Firebase
+1. **Configure Firebase for Flutter**:
+   - In your Flutter project directory, run the following command to configure Firebase:
+
+     ```bash
+     flutterfire configure
+     ```
+
+That's it! You should now have Firebase CLI and `flutterfire_cli` set up on your Mac.

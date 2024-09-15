@@ -1,20 +1,18 @@
 
-
-
-
-
 You need to use the following plugin:
-
+```
 dependencies:
   firebase_auth: ^0.15.3
   cloud_firestore: ^0.13.0+1
-
+```
 
 Don't forget to configure firebase:
 
+```
 flutterfire config
+```
 
-Also in your app/build.gradle, increase the minSdkVersion:
+Also in your `app/build.gradle`, increase the `minSdkVersion`:
 
 Change this:
 
@@ -49,12 +47,12 @@ https://pub.dev/packages/firebase_auth#usage
 ```
 
 
-
+```
 Firebase -> Go to console -> Create a project -> flutter listview
-
-
+```
+```
 Firebase -> Build -> Firestore Database -> Create database -> 
-
+```
 
 A **`permission-denied`** error when using `cloud_firestore` in Flutter typically occurs when your Firebase Firestore security rules are not configured correctly, or the client does not have the necessary permissions to read or write data.
 

@@ -1,0 +1,14 @@
+lib -> models
+
+lib -> screens
+
+lib -> screens -> country
+
+
+File Setup
+
+lib -> models -> Country.dart
+
+lib -> screens -> country -> CountryScreen.dart
+
+lib -> screens -> country -> CountryDetailScreen.dart

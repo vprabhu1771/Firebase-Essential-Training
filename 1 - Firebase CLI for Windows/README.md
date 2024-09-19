@@ -4,14 +4,28 @@
 
 # https://www.youtube.com/watch?v=gptBM2CPMQs
 
+```
+C:\Users\windows_rig1>firebase
+'firebase' is not recognized as an internal or external command,
+operable program or batch file.
+```
+
+# Install Firebase tools
 
 ```
 npm install -g firebase-tools
 ```
 
+# UnInstall Firebase tools
+
+```
+npm uninstall -g firebase-tools
+```
+
 ```
 C:\Users\windows_rig1\AppData\Roaming\npm
 ```
+
 
 ```
 firebase login

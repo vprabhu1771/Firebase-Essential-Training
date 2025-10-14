@@ -19,6 +19,10 @@ npm init --y
 ```
 
 ```
+npm i firebase-admin
+```
+
+```
 Create File server.js
 ```
 

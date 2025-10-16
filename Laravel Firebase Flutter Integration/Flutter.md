@@ -119,6 +119,76 @@ class MyApp extends StatelessWidget {
 }
 ```
 
+Sure 👍 Here’s a clean **helper function** in Flutter that gets and returns the Firebase Cloud Messaging (FCM) token (Player ID).
+
+You can put this in a `firebase_helper.dart` file for reuse.
+
+---
+
+### ✅ `firebase_helper.dart`
+
+```dart
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+/// Fetches the FCM token (Player ID) for the current device.
+/// Returns `null` if unable to retrieve it.
+Future<String?> getPlayerId() async {
+  try {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    // Request permission for notifications (important for iOS)
+    await messaging.requestPermission();
+
+    // Get the FCM token
+    String? token = await messaging.getToken();
+
+    if (token != null) {
+      print("✅ Player ID (FCM Token): $token");
+    } else {
+      print("⚠️ Unable to get Player ID.");
+    }
+
+    return token;
+  } catch (e) {
+    print("❌ Error fetching Player ID: $e");
+    return null;
+  }
+}
+```
+
+---
+
+### ✅ Usage Example
+
+In your registration or login flow:
+
+```dart
+import 'firebase_helper.dart'; // import this file
+
+Future<void> registerUser() async {
+  String? playerId = await getPlayerId(); // get token from helper
+
+  final response = await http.post(
+    Uri.parse('https://your-api.com/api/register'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'name': 'Prabhu',
+      'email': 'prabhu@gmail.com',
+      'password': '123456',
+      'device_name': 'FlutterApp',
+      'player_id': playerId, // pass to backend
+    }),
+  );
+
+  print(response.body);
+}
+```
+
+---
+
+Would you like me to modify the helper so it **automatically refreshes and updates the token in your Laravel backend whenever it changes** (using `onTokenRefresh`)?
+
+
 `Constants.dart`
 ```
 class Constants {

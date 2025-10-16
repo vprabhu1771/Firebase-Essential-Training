@@ -14,6 +14,11 @@ extension=sodium
 php artisan make:migration add_player_id_to_users_table
 ```
 
+# `.env`
+```
+FIREBASE_SERVICE_ACCOUNT = ""
+```
+
 ```
 <?php
 

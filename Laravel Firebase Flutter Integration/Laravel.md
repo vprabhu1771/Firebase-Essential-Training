@@ -87,16 +87,63 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-use App\Models\User;
-
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\User;
 class AuthController extends Controller
 {
+
+     public function register(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required',
+                'device_name' => 'required|string', // Add device_name validation
+                'player_id' => 'nullable|string', // Optional if not always available
+            ]);
+
+            // $request->validate([
+            //     'name' => 'required|string|max:255',
+            //     'email' => 'required|email|unique:users,email',
+            //     'password' => 'required|string|min:6',
+            //     'device_name' => 'required|string', // Add device_name validation
+            // ]);
+
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'player_id' => $request->player_id, // save the player_id
+            ]);
+
+            // Create token for device
+            $token = $user->createToken($request->device_name)->plainTextToken;
+
+            // Optional: send welcome notification
+            if ($request->filled('player_id')) {
+                $this->sendWelcomeNotification($request->player_id, $user->name);
+            }
+
+            return response()->json([
+                'message' => 'User registered successfully',
+                'user' => $user,
+                'token' => $token,
+            ], 201);
+
+            // Issue a token with Sanctum and attach the device_name
+            // $token = $user->createToken($request->input('device_name'))->plainTextToken;
+
+            // return response()->json(['message' => 'User registered successfully', 'user' => $user, 'token' => $token], 201);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->validator->errors()], 422);
+        }
+
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -129,9 +176,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Kreait\Firebase\Factory;
-
 use App\Models\User;
 
 class NotificationController extends Controller
@@ -148,8 +193,15 @@ class NotificationController extends Controller
     public function sendNotification(Request $request)
     {
         // dd(base_path());
+
+        $request->validate([
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'player_id' => 'required|string',
+        ]);
+        
         $firebase = (new Factory)
-            ->withServiceAccount(base_path('firebase-adminsdk.json'))
+            ->withServiceAccount(base_path(env('FIREBASE_SERVICE_ACCOUNT', 'firebase-adminsdk.json')))
             ->createMessaging();
 
         $message = [
@@ -162,6 +214,27 @@ class NotificationController extends Controller
 
         $firebase->send($message);
         return response()->json(['message' => 'Notification sent']);
+    }
+
+    public function sendWelcomeNotification($playerId, $userName)
+    {
+        $firebase = (new Factory)
+            ->withServiceAccount(base_path(env('FIREBASE_SERVICE_ACCOUNT', 'firebase-adminsdk.json')))
+            ->createMessaging();
+
+        $message = [
+            'notification' => [
+                'title' => 'Welcome to Our App!',
+                'body' => "Hi {$userName}, thanks for joining us!",
+            ],
+            'token' => $playerId,
+        ];
+
+        try {
+            $firebase->send($message);
+        } catch (\Exception $e) {
+            \Log::error('Failed to send notification: ' . $e->getMessage());
+        }
     }
 }
 ```

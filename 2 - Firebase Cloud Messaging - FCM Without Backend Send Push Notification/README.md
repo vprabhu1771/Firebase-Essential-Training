@@ -1,15 +1,23 @@
 # 2 - Firebase Cloud Messaging - FCM Without Backend Send Push Notification
+```
+https://www.youtube.com/watch?v=3-P0Zx0_vt8
+```
 
-# https://www.youtube.com/watch?v=3-P0Zx0_vt8
+```
+https://pub.dev/packages/http
+```
 
-# https://pub.dev/packages/http
+```
+https://pub.dev/packages/firebase_core
+```
 
-# https://pub.dev/packages/firebase_core
+```
+https://pub.dev/packages/firebase_messaging
+```
 
-# https://pub.dev/packages/firebase_messaging
-
-# https://pub.dev/packages/awesome_notifications
-
+```
+https://pub.dev/packages/awesome_notifications
+```
 
 ```
 flutterfire configure

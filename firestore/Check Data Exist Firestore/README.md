@@ -60,3 +60,9 @@ void main() async {
   );
 }
 ```
+
+```
+I/flutter (14698): Exists: true
+I/flutter (14698): ID: driver_001
+I/flutter (14698): Data: {updated_at: 1721632100, heading: 170, latitude: 11.7442, speed: 34, status: online, longitude: 79.7681}
+```

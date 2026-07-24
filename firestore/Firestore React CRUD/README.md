@@ -4,8 +4,8 @@ I'll adapt the solution for **Vite React** with proper setup and modern practice
 
 ```bash
 # Create Vite React project
-npm create vite@latest category-crud -- --template react
-cd category-crud
+npm create vite@latest firestore-crud -- --template react
+cd firestore-crud
 
 # Install Firebase and other dependencies
 npm install firebase

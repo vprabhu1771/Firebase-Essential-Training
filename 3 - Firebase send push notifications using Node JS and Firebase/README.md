@@ -14,17 +14,8 @@ Firebase Doc -> Admin SDK -> Get started with Firebase -> Add Firebase to a serv
 
 ```
 mkdir notify
-```
-
-```
 cd notify
-```
-
-```
 npm init --y
-```
-
-```
 npm i firebase-admin
 ```
 

@@ -1,8 +1,14 @@
-# https://www.youtube.com/watch?v=J8j_jzWPRtw
+```
+https://www.youtube.com/watch?v=J8j_jzWPRtw
+```
 
-# https://pub.dev/packages/firebase_core
+```
+https://pub.dev/packages/firebase_core
+```
 
-# https://pub.dev/packages/firebase_messaging
+```
+https://pub.dev/packages/firebase_messaging
+```
 
 Firebase Doc -> Admin SDK -> Get started with Firebase -> Add Firebase to a server -> Send Firebase Cloud Messaging messages
 

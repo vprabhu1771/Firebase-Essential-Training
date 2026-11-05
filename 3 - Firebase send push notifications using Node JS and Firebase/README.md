@@ -3,6 +3,10 @@ https://www.youtube.com/watch?v=J8j_jzWPRtw
 ```
 
 ```
+https://pub.dev/packages/awesome_notifications
+```
+
+```
 https://pub.dev/packages/firebase_core
 ```
 
